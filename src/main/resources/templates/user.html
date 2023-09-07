@@ -13,6 +13,10 @@
 
     <h1 class="mb-5">User Page</h1>
 
+    <div th:if="${param.success}" class="alert alert-success" role="alert">
+        Successfully Added a User
+    </div>
+
     <form th:action="@{/add-user}" th:object="${userDto}">
         <div class="mb-3">
             <label for="firstNameInput" class="form-label">First Name</label>
