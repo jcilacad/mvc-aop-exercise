@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
 
     @GetMapping("/add-user")
-    public String addUser(Model model) {
+    public String getUser(Model model) {
 
         model.addAttribute("userDto", new UserDto());
-        
-        return "add-user";
+
+        return "user";
     }
 }
