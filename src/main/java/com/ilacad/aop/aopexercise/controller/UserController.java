@@ -24,13 +24,14 @@ public class UserController {
     @GetMapping("/add-user")
     public String getUser(Model model) {
 
-        model.addAttribute("userDto", new UserDto());
+        UserDto userDto = new UserDto();
+        model.addAttribute("userDto", userDto);
 
         return "user";
     }
 
     @PostMapping("/add-user")
-    public String addUser(@Valid @ModelAttribute(name = "userDto") UserDto userDto, Model model, BindingResult result) {
+    public String addUser(@Valid @ModelAttribute(name = "userDto") UserDto userDto, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("userDto", userDto);
