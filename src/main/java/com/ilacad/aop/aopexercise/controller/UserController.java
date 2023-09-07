@@ -1,7 +1,9 @@
 package com.ilacad.aop.aopexercise.controller;
 
 import com.ilacad.aop.aopexercise.dto.UserDto;
+import com.ilacad.aop.aopexercise.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
+
+    UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/add-user")
     public String getUser(Model model) {
@@ -27,6 +36,8 @@ public class UserController {
             model.addAttribute("userDto", userDto);
             return "user";
         }
+
+
 
         return "redirect:/add-user?success";
     }
