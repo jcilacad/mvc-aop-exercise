@@ -4,6 +4,7 @@ import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
