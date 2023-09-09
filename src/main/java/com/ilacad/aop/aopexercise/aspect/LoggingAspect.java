@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 
 
-    @Before("execution(* add*(..))")
+    @Before("execution(* com.ilacad.aop.aopexercise.service.*.*(..))")
     public void beforeAddAccountAdvice() {
 
         System.out.println("Message Before Adding User");
