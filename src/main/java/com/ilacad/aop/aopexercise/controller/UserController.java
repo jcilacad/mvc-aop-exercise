@@ -38,7 +38,7 @@ public class UserController {
             return "user";
         }
 
-        userService.addUser(userDto);
+        userService.addUser(userDto, true);
 
         return "redirect:/add-user?success";
     }

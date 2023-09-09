@@ -18,15 +18,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(UserDto userDto) {
+    public void addUser(UserDto userDto, boolean isVip) {
 
         // Getting the data from UserDto
         String firstName = userDto.getFirstName();
         String lastName = userDto.getLastName();
         String email = userDto.getEmail();
 
+
         // Create an instance of User and Save in Database
         User user = new User(firstName, lastName, email);
+        user.setVip(isVip);
         userRepository.save(user);
 
     }

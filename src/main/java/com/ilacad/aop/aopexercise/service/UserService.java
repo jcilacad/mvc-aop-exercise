@@ -4,5 +4,5 @@ import com.ilacad.aop.aopexercise.dto.UserDto;
 
 public interface UserService {
 
-    void addUser(UserDto userDto);
+    void addUser(UserDto userDto, boolean isVip);
 }
