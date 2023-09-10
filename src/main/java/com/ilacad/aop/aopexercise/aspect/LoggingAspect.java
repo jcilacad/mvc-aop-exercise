@@ -5,6 +5,10 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Date;
+
 @Aspect
 @Component
 public class LoggingAspect {
@@ -16,5 +20,14 @@ public class LoggingAspect {
     public void beforeAddAccountAdvice() {
 
         System.out.println("Message Before Adding User");
+    }
+
+    @Before("forServicePackage()")
+    public void auditDateForAddingAccount() {
+
+        Date date = new Date();
+        Timestamp timeStamp = new Timestamp(date.getTime());
+
+        System.out.println("=============" +timeStamp + "=============");
     }
 }
