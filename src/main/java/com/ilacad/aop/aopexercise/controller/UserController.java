@@ -40,6 +40,16 @@ public class UserController {
 
         userService.addUser(userDto, true);
 
+        // Calling getter and setter for name and service code for development.
+
+        // Setter inside user service impl
+        userService.setName("John");
+        userService.setServiceCode("Agent 444");
+
+        // Getter inside user service impl
+        userService.getName();
+        userService.getServiceCode();
+
         return "redirect:/add-user?success";
     }
 

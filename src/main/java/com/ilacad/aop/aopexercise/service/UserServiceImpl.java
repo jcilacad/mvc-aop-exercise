@@ -4,13 +4,14 @@ import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     UserRepository userRepository;
+    private String name;
+    private String serviceCode;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -31,5 +32,25 @@ public class UserServiceImpl implements UserService {
         user.setVip(isVip);
         userRepository.save(user);
 
+    }
+
+    public String getName() {
+        System.out.println(getClass() + "getName()");
+        return name;
+    }
+
+    public void setName(String name) {
+        System.out.println(getClass() + "setName()");
+        this.name = name;
+    }
+
+    public String getServiceCode() {
+        System.out.println(getClass() + "getServiceCode()");
+        return serviceCode;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        System.out.println(getClass() + "setServiceCode()");
+        this.serviceCode = serviceCode;
     }
 }

@@ -5,4 +5,12 @@ import com.ilacad.aop.aopexercise.dto.UserDto;
 public interface UserService {
 
     void addUser(UserDto userDto, boolean isVip);
+
+    String getName();
+
+    String getServiceCode();
+
+    void setName(String name);
+
+    void setServiceCode(String name);
 }
