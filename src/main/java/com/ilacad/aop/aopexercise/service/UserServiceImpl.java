@@ -35,22 +35,22 @@ public class UserServiceImpl implements UserService {
     }
 
     public String getName() {
-        System.out.println(getClass() + "getName()");
+        System.out.println(getClass() + " - getName()");
         return name;
     }
 
     public void setName(String name) {
-        System.out.println(getClass() + "setName()");
+        System.out.println(getClass() + " - setName()");
         this.name = name;
     }
 
     public String getServiceCode() {
-        System.out.println(getClass() + "getServiceCode()");
+        System.out.println(getClass() + " - getServiceCode()");
         return serviceCode;
     }
 
     public void setServiceCode(String serviceCode) {
-        System.out.println(getClass() + "setServiceCode()");
+        System.out.println(getClass() + " - setServiceCode()");
         this.serviceCode = serviceCode;
     }
 }
