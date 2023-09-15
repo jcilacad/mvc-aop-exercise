@@ -21,7 +21,7 @@ public class LoggingAspect {
     private void setter() {}
 
     // Pointcut for getter methods
-    @Pointcut("execution(* com.ilacad.aop.aop.exercise.service.*.get*(..))")
+    @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.get*(..))")
     private void getter() {}
 
     @Pointcut("forServicePackage() && !(setter() || getter())")
