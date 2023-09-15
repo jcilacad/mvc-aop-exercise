@@ -24,7 +24,7 @@ public class LoggingAspect {
     @Pointcut("execution(* com.ilacad.aop.aop.exercise.service.*.get*(..))")
     private void getter() {}
 
-    @Pointcut("execution(forServicePackage() && !(setter() || getter()))")
+    @Pointcut("forServicePackage() && !(setter() || getter())")
     private void forServicePackageNoGetterSetter() {}
 
     @Before("forServicePackageNoGetterSetter()")
