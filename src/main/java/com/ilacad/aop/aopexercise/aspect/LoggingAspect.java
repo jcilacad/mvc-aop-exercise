@@ -26,14 +26,14 @@ public class LoggingAspect {
 
     @Pointcut("execution(forServicePackage() && !(setter() || getter()))")
     private void forServicePackageNoGetterSetter() {}
-    
-    @Before("forServicePackage()")
+
+    @Before("forServicePackageNoGetterSetter()")
     public void beforeAddAccountAdvice() {
 
         System.out.println("Message Before Adding User");
     }
 
-    @Before("forServicePackage()")
+    @Before("forServicePackageNoGetterSetter()")
     public void auditDateForAddingAccount() {
 
         Date date = new Date();
