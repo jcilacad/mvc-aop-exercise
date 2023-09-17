@@ -7,17 +7,17 @@ import org.aspectj.lang.annotation.Pointcut;
 public class LogAopExpressions {
 
     @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.*(..))")
-    private void forServicePackage() {}
+    public void forServicePackage() {}
 
     // Pointcut for setter methods
     @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.set*(..))")
-    private void setter() {}
+    public void setter() {}
 
     // Pointcut for getter methods
     @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.get*(..))")
-    private void getter() {}
+    public void getter() {}
 
     @Pointcut("forServicePackage() && !(setter() || getter())")
-    private void forServicePackageNoGetterSetter() {}
+    public void forServicePackageNoGetterSetter() {}
 
 }

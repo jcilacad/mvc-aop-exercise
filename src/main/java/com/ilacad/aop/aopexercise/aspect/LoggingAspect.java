@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 
-    @Before("com.ilacad.aop.aopexercise.aspect.LoggingAspect.forServicePackageNoGetterSetter()")
+    @Before("com.ilacad.aop.aopexercise.aspect.LogAopExpressions.forServicePackageNoGetterSetter()")
     public void beforeAddAccountAdvice() {
 
         System.out.println("Message Before Adding User");
