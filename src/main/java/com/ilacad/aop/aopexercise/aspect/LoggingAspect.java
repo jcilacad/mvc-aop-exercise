@@ -41,4 +41,9 @@ public class LoggingAspect {
 
         System.out.println("=============" +timeStamp + "=============");
     }
+
+    @Before("forServicePackageNoGetterSetter()")
+    public void logToCloudAsync() {
+        System.out.println("Logging to Cloud Async");
+    }
 }
