@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyCloudLogAsyncAspect {
 
-    @Before("forServicePackageNoGetterSetter()")
+    @Before("com.ilacad.aop.aopexercise.aspect.LogAopExpressions.forServicePackageNoGetterSetter()")
     public void logToCloudAsync() {
         System.out.println("Logging to Cloud Async");
     }

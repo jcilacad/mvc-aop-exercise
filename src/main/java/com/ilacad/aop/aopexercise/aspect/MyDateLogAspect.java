@@ -11,7 +11,7 @@ import java.util.Date;
 @Component
 public class MyDateLogAspect {
 
-    @Before("forServicePackageNoGetterSetter()")
+    @Before("com.ilacad.aop.aopexercise.aspect.LogAopExpressions.forServicePackageNoGetterSetter()")
     public void auditDateForAddingAccount() {
 
         Date date = new Date();
