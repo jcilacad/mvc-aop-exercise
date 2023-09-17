@@ -13,20 +13,6 @@ import java.util.Date;
 @Component
 public class LoggingAspect {
 
-    @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.*(..))")
-    private void forServicePackage() {}
-
-    // Pointcut for setter methods
-    @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.set*(..))")
-    private void setter() {}
-
-    // Pointcut for getter methods
-    @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.get*(..))")
-    private void getter() {}
-
-    @Pointcut("forServicePackage() && !(setter() || getter())")
-    private void forServicePackageNoGetterSetter() {}
-
     @Before("forServicePackageNoGetterSetter()")
     public void beforeAddAccountAdvice() {
 
