@@ -2,8 +2,10 @@ package com.ilacad.aop.aopexercise.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 @Aspect
+@Component
 public class LogAopExpressions {
 
     @Pointcut("execution(* com.ilacad.aop.aopexercise.service.*.*(..))")
