@@ -53,7 +53,7 @@ public class UserController {
         return "redirect:/add-user?success";
     }
 
-    @GetMapping()
+    @GetMapping("/users-list")
     public String getAllUsers() {
 
         return "users-list";
