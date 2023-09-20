@@ -53,4 +53,10 @@ public class UserController {
         return "redirect:/add-user?success";
     }
 
+    @GetMapping()
+    public String getAllUsers() {
+
+        return "users-list";
+    }
+
 }
