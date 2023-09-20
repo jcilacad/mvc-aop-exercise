@@ -64,7 +64,11 @@ public class LoggingAspect {
         System.out.println("Executing After Returning Advice with a method of - " + method);
 
         // Printing all users everytime users interacting with the method
-        System.out.println("Result = " + result);
+        System.out.println("Result\n");
+
+        for (User user : result) {
+            System.out.println(user);
+        }
     }
 
 }
