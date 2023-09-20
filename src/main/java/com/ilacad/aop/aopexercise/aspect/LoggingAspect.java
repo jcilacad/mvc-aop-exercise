@@ -1,12 +1,16 @@
 package com.ilacad.aop.aopexercise.aspect;
 
 import com.ilacad.aop.aopexercise.dto.UserDto;
+import com.ilacad.aop.aopexercise.entity.User;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 
 @Aspect
@@ -44,10 +48,23 @@ public class LoggingAspect {
 
 
         }
-
-
-
     }
 
+    @AfterReturning(
+            pointcut = "execution(* com.ilacad.aop.aopexercise.repository.UserRepository.findAll(..))",
+            returning = "result"
+    )
+    public void afterReturningGetUsersAdvice(JoinPoint joinPoint,
+                                             List<User> result) {
+
+        // Getting the signature method of the method within the pointcut expression
+        String method = joinPoint.getSignature().toShortString();
+
+        // Printing the method name
+        System.out.println("Executing After Returning Advice with a method of - " + method);
+
+        // Printing all users everytime users interacting with the method
+        System.out.println("Result\n" + result);
+    }
 
 }
