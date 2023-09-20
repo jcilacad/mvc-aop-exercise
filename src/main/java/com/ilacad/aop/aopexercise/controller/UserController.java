@@ -1,6 +1,7 @@
 package com.ilacad.aop.aopexercise.controller;
 
 import com.ilacad.aop.aopexercise.dto.UserDto;
+import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -54,7 +57,11 @@ public class UserController {
     }
 
     @GetMapping("/users-list")
-    public String getAllUsers() {
+    public String getAllUsers(Model model) {
+
+        List<User> users = userService.findAllUsers();
+
+        model.addAttribute("users", users);
 
         return "users-list";
     }
