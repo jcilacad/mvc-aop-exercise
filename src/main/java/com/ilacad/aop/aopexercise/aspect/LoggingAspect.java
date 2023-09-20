@@ -51,7 +51,7 @@ public class LoggingAspect {
     }
 
     @AfterReturning(
-            pointcut = "execution(* com.ilacad.aop.aopexercise.repository.UserRepository.findAll(..))",
+            pointcut = "execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.findAllUsers(..))",
             returning = "result"
     )
     public void afterReturningGetUsersAdvice(JoinPoint joinPoint,
@@ -64,7 +64,7 @@ public class LoggingAspect {
         System.out.println("Executing After Returning Advice with a method of - " + method);
 
         // Printing all users everytime users interacting with the method
-        System.out.println("Result\n" + result);
+        System.out.println("Result = " + result);
     }
 
 }
