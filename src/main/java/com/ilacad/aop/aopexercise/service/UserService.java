@@ -1,6 +1,9 @@
 package com.ilacad.aop.aopexercise.service;
 
 import com.ilacad.aop.aopexercise.dto.UserDto;
+import com.ilacad.aop.aopexercise.entity.User;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -13,4 +16,6 @@ public interface UserService {
     void setName(String name);
 
     void setServiceCode(String name);
+
+    List<User> findAllUsers();
 }

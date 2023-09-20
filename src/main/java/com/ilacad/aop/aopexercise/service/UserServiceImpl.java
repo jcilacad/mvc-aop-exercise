@@ -6,6 +6,8 @@ import com.ilacad.aop.aopexercise.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -52,5 +54,10 @@ public class UserServiceImpl implements UserService {
     public void setServiceCode(String serviceCode) {
         System.out.println(getClass() + " - setServiceCode()");
         this.serviceCode = serviceCode;
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 }
