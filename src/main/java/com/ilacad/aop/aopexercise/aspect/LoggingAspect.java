@@ -2,11 +2,14 @@ package com.ilacad.aop.aopexercise.aspect;
 
 import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
+import com.ilacad.aop.aopexercise.repository.UserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +20,13 @@ import java.util.List;
 @Component
 @Order(2)
 public class LoggingAspect {
+
+    private UserRepository userRepository;
+
+    @Autowired
+    public LoggingAspect(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Before("com.ilacad.aop.aopexercise.aspect.LogAopExpressions.forServicePackageNoGetterSetter()")
     public void beforeAddAccountAdvice(JoinPoint joinPoint) {
@@ -69,6 +79,27 @@ public class LoggingAspect {
         for (User user : result) {
             System.out.println(user);
         }
+
+        // Make the first name and last name first character uppercase
+
+        // Iterate through the result
+        for (User user : result) {
+
+            // Do the logic of converting first character to uppercase
+            String convertedFirstName = StringUtils.capitalize(user.getFirstName());
+            String convertedLastName = StringUtils.capitalize(user.getLastName());
+
+
+
+            // Set the current first and last name to the converted first and last name
+            user.setFirstName(convertedFirstName);
+            user.setLastName(convertedLastName);
+
+        }
+
+        // Save the list in database
+        userRepository.saveAll(result);
+
     }
 
 }
