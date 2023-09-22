@@ -66,4 +66,11 @@ public class UserController {
         return "users-list";
     }
 
+
+    @PostMapping("/find-user")
+    public String findUserByEmail() {
+
+
+        return "redirect:/users-list";
+    }
 }
