@@ -14,5 +14,5 @@ public class EmailDto {
 
     @NotEmpty(message = "Email Must Not Be Empty")
     private String email;
-    
+
 }

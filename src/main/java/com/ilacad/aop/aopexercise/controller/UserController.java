@@ -1,5 +1,6 @@
 package com.ilacad.aop.aopexercise.controller;
 
+import com.ilacad.aop.aopexercise.dto.EmailDto;
 import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.service.UserService;
@@ -68,7 +69,16 @@ public class UserController {
 
 
     @PostMapping("/find-user")
-    public String findUserByEmail() {
+    public String findUserByEmail(@ModelAttribute EmailDto emailDto,
+                                  BindingResult result,
+                                  Model model) {
+
+        if (result.hasErrors()) {
+            List<User> users = userService.findAllUsers();
+            model.addAttribute("users", users);
+
+            return "users-list";
+        }
 
 
         return "redirect:/users-list";
