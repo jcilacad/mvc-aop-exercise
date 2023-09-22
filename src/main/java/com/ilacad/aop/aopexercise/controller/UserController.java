@@ -63,19 +63,21 @@ public class UserController {
         List<User> users = userService.findAllUsers();
 
         model.addAttribute("users", users);
+        model.addAttribute("emailDto", new EmailDto());
 
         return "users-list";
     }
 
 
     @PostMapping("/find-user")
-    public String findUserByEmail(@ModelAttribute EmailDto emailDto,
+    public String findUserByEmail(@Valid @ModelAttribute("emailDto") EmailDto emailDto,
                                   BindingResult result,
                                   Model model) {
 
         if (result.hasErrors()) {
             List<User> users = userService.findAllUsers();
             model.addAttribute("users", users);
+            model.addAttribute("emailDto", emailDto);
 
             return "users-list";
         }
