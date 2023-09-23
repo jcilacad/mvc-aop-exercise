@@ -15,15 +15,22 @@
     <h1 class="text-center mb-3">List Of Users</h1>
 
     <form th:action="@{/find-user}" method="POST" th:object="${emailDto}">
+
+        <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger" role="alert">
+            <p  th:errors="*{email}"></p>
+        </div>
+
         <div class="input-group mb-3">
 
-            <input th:field="*{email}" type="text" class="form-control" placeholder="Email Address" aria-label="Recipient's username"
+            <input th:field="*{email}" type="text" class="form-control" placeholder="Email Address"
+                   aria-label="Recipient's username"
                    aria-describedby="button-addon2">
             <br>
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
-            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger mb-3"></p>
+
             <br>
         </div>
+
     </form>
 
 
