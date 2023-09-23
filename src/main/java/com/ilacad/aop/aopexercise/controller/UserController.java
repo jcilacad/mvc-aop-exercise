@@ -84,11 +84,14 @@ public class UserController {
             return "users-list";
         }
 
-        User user = userService.findUserByEmail(emailDto);
-        List<User> users = new ArrayList<>();
-        users.add(user);
-
-        model.addAttribute("users", user);
+        try {
+            User user = userService.findUserByEmail(emailDto);
+            List<User> users = new ArrayList<>();
+            users.add(user);
+            model.addAttribute("users", user);
+        } catch (RuntimeException e) {
+            return "redirect:/users-list";
+        }
 
         return "users-list";
     }
