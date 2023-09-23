@@ -6,6 +6,7 @@ import com.ilacad.aop.aopexercise.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -90,7 +91,6 @@ public class LoggingAspect {
             String convertedLastName = StringUtils.capitalize(user.getLastName());
 
 
-
             // Set the current first and last name to the converted first and last name
             user.setFirstName(convertedFirstName);
             user.setLastName(convertedLastName);
@@ -99,6 +99,27 @@ public class LoggingAspect {
 
         // Save the list in database
         userRepository.saveAll(result);
+
+    }
+
+
+    @AfterThrowing(
+            pointcut = "execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.findUserByEmail(..))",
+            throwing = "exception"
+    )
+    public void afterThrowingFindUserByEmailAdvice(JoinPoint joinPoint,
+                                                   Throwable exception) {
+
+
+        // Get the signature of method
+        String method = joinPoint.getSignature().toShortString();
+
+        // Display the method name / metadata
+        System.out.println("Executing the after throwing advice of method: " + method);
+
+        // Displaying the exception
+
+        System.out.println("The exception is = " + exception);
 
     }
 
