@@ -5,6 +5,7 @@ import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.service.UserService;
 import jakarta.validation.Valid;
+import org.hibernate.collection.spi.PersistentBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -82,8 +84,12 @@ public class UserController {
             return "users-list";
         }
 
-        userService.findUserByEmail(emailDto);
+        User user = userService.findUserByEmail(emailDto);
+        List<User> users = new ArrayList<>();
+        users.add(user);
 
-        return "redirect:/users-list";
+        model.addAttribute("users", user);
+
+        return "users-list";
     }
 }

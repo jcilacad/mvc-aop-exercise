@@ -79,6 +79,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Did not find email - "  + email);
         }
 
+        // Return user
         return user;
 
     }
