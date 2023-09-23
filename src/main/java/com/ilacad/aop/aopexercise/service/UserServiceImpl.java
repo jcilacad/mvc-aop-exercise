@@ -1,5 +1,6 @@
 package com.ilacad.aop.aopexercise.service;
 
+import com.ilacad.aop.aopexercise.dto.EmailDto;
 import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.repository.UserRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -59,5 +61,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User findUserByEmail(EmailDto emailDto) {
+
+        // Get the email from the form
+        String email = emailDto.getEmail();
+
+        // Check if the user is in the record
+        Optional<User> result = userRepository.findByEmailIgnoreCaseContaining(email);
+        User user = null;
+
+        if (result.isPresent()) {
+            user = result.get();
+        } else {
+            throw new RuntimeException("Did not find email - "  + email);
+        }
+
+        return user;
+
     }
 }

@@ -1,5 +1,6 @@
 package com.ilacad.aop.aopexercise.service;
 
+import com.ilacad.aop.aopexercise.dto.EmailDto;
 import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 
@@ -18,4 +19,6 @@ public interface UserService {
     void setServiceCode(String name);
 
     List<User> findAllUsers();
+
+    User findUserByEmail(EmailDto emailDto);
 }

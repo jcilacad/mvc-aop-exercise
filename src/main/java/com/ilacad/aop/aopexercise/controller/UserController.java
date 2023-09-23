@@ -82,6 +82,7 @@ public class UserController {
             return "users-list";
         }
 
+        userService.findUserByEmail(emailDto);
 
         return "redirect:/users-list";
     }
