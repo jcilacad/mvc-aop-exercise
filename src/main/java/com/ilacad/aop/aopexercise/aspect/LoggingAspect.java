@@ -5,10 +5,7 @@ import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -121,6 +118,14 @@ public class LoggingAspect {
 
         System.out.println("The exception is = " + exception);
 
+    }
+
+
+    @After("execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.findUserByEmail(..))")
+    public void afterFinally(JoinPoint joinPoint) {
+
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("Executing @After finally in method : " + method);
     }
 
 }
