@@ -128,4 +128,6 @@ public class LoggingAspect {
         System.out.println("Executing @After finally in method : " + method);
     }
 
+    @Around("execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.find)")
+
 }

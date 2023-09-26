@@ -22,4 +22,8 @@ public class LogAopExpressions {
     @Pointcut("forServicePackage() && !(setter() || getter())")
     public void forServicePackageNoGetterSetter() {}
 
+    // Pointcut for finding user by email in the UserServiceImpl
+    @Pointcut("execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.findUserByEmail(..))")
+    public void findUserByEmail() {} 
+
 }
