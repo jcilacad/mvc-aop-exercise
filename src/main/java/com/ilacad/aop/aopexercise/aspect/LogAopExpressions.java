@@ -24,6 +24,6 @@ public class LogAopExpressions {
 
     // Pointcut for finding user by email in the UserServiceImpl
     @Pointcut("execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.findUserByEmail(..))")
-    public void findUserByEmail() {} 
+    public void findUserByEmail() {}
 
 }

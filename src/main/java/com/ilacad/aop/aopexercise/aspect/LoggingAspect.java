@@ -5,6 +5,7 @@ import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,13 +122,38 @@ public class LoggingAspect {
     }
 
 
-    @After("execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.findUserByEmail(..))")
-    public void afterFinally(JoinPoint joinPoint) {
+    @After("com.ilacad.aop.aopexercise.aspect.LogAopExpressions.findUserByEmail()")
+    public void afterFinallyAdvice(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().toShortString();
         System.out.println("Executing @After finally in method : " + method);
     }
 
-    @Around("execution(* com.ilacad.aop.aopexercise.service.UserServiceImpl.find)")
+    @Around("com.ilacad.aop.aopexercise.aspect.LogAopExpressions.findUserByEmail()")
+    public Object aroundFindUserByEmailAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+
+
+        // Get the method signature of the advice method and print it.
+        String method = proceedingJoinPoint.getSignature().toShortString();
+        System.out.println("Executing the method of " + method + " for the around advice");
+
+        // Get the start time
+        Long startTime = System.currentTimeMillis();
+
+        // Execute the method using the proceed()
+        Object result = proceedingJoinPoint.proceed();
+
+        // Get the end time
+        Long endTime = System.currentTimeMillis();
+
+        // Get the duration time of the execution of the proceeding join point method
+        Long durationTime = endTime - startTime;
+
+        // Printing the duration time in seconds
+        System.out.println("Duration time: " + durationTime / 1000);
+
+        // return the result
+        return result;
+    }
 
 }
