@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -78,6 +79,14 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new RuntimeException("Did not find email - "  + email);
         }
+
+        // Add a delay of 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.out.println("Exception: " + e);
+        }
+        
 
         // Return user
         return user;
