@@ -140,8 +140,17 @@ public class LoggingAspect {
         // Get the start time
         Long startTime = System.currentTimeMillis();
 
-        // Execute the method using the proceed()
-        Object result = proceedingJoinPoint.proceed();
+
+        Object result = null;
+
+
+        // Use exception handler when user didn't exists
+        try {
+            // Execute the method using the proceed()
+            result = proceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            result = e.getMessage();
+        }
 
         // Get the end time
         Long endTime = System.currentTimeMillis();
