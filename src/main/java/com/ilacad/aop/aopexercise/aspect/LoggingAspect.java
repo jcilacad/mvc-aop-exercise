@@ -1,5 +1,6 @@
 package com.ilacad.aop.aopexercise.aspect;
 
+import com.ilacad.aop.aopexercise.dto.EmailDto;
 import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.repository.UserRepository;
@@ -132,6 +133,13 @@ public class LoggingAspect {
     @Around("com.ilacad.aop.aopexercise.aspect.LogAopExpressions.findUserByEmail()")
     public Object aroundFindUserByEmailAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
+        // Get the value of email
+        Object[] args = proceedingJoinPoint.getArgs();
+
+        EmailDto emailDto = (EmailDto) args[0];
+
+        String email = emailDto.getEmail();
+
 
         // Get the method signature of the advice method and print it.
         String method = proceedingJoinPoint.getSignature().toShortString();
@@ -149,7 +157,7 @@ public class LoggingAspect {
             // Execute the method using the proceed()
             result = proceedingJoinPoint.proceed();
         } catch (Exception e) {
-            throw new RuntimeException("Did not find email");
+            throw new RuntimeException("Did not find email - " + email);
         }
 
         // Get the end time
