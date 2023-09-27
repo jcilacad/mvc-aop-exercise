@@ -90,6 +90,7 @@ public class UserController {
             users.add(user);
             model.addAttribute("users", user);
         } catch (RuntimeException e) {
+            System.out.println("Exception from main app for finding user - "  + e.getMessage());
             return "redirect:/users-list";
         }
 

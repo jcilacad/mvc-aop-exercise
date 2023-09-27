@@ -149,7 +149,7 @@ public class LoggingAspect {
             // Execute the method using the proceed()
             result = proceedingJoinPoint.proceed();
         } catch (Exception e) {
-            result = e.getMessage();
+            throw new RuntimeException("Did not find email");
         }
 
         // Get the end time
