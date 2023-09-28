@@ -152,7 +152,7 @@ public class LoggingAspect {
         Object result = null;
 
 
-        // Use exception handler when user didn't exists
+        // Use exception handler when user didn't exist
         try {
             // Execute the method using the proceed()
             result = proceedingJoinPoint.proceed();
