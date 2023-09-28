@@ -4,6 +4,7 @@ import com.ilacad.aop.aopexercise.dto.EmailDto;
 import com.ilacad.aop.aopexercise.dto.UserDto;
 import com.ilacad.aop.aopexercise.entity.User;
 import com.ilacad.aop.aopexercise.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Aspect
 @Component
+@Slf4j
 @Order(2)
 public class LoggingAspect {
 
@@ -172,5 +174,35 @@ public class LoggingAspect {
         // return the result
         return result;
     }
+
+
+    @AfterReturning(
+            pointcut="execution(* com.ilacad.aop.aopexercise.*.*.*(..))",
+            returning="result"
+    )
+    public void afterReturningLogAllMethodAdvice(JoinPoint joinPoint, Object result) {
+
+        // Get the method name and display it
+        String method = joinPoint.getSignature().toShortString();
+        log.info("===============> method name: " + method);
+
+        // Display all arguments
+        Object[] arguments = joinPoint.getArgs();
+
+        // Iterate arguments and display it
+        for (Object argument : arguments) {
+            log.info("============> argument: " + argument);
+        }
+
+        // Display return value
+        log.info("========> Return value: " + result);
+
+
+
+
+
+
+    }
+
 
 }
